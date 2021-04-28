@@ -1,8 +1,13 @@
-$box-padding: 15px
+$box-padding: 1rem
 $section-padding: 1rem 1.5rem
+$footer-background-color: hsl(0, 0%, 7%)
+//$column-gap: 2rem
 
 @import 'bulma/bulma.sass'
 @import '@fortawesome/fontawesome-free/scss/fontawesome.scss'
+
+.box
+    margin-bottom: 2rem
 
 .webcomic-banner
     height: 300px
@@ -31,6 +36,18 @@ $section-padding: 1rem 1.5rem
     min-height: 90px
     position: fixed
     width: 100%
+
+.summary
+    padding: 2rem
+    .expandable
+        height: 10rem
+        overflow: hidden
+    .summary-actions
+        padding-top: 3rem
+
+
+.chapter-list
+    padding: 2rem
 
 //Chapter Page
 
