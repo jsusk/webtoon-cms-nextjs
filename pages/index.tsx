@@ -3,14 +3,21 @@ import Head from 'next/head'
 import Image from 'next/image'
 import Link from 'next/link'
 import { getWebcomicChapters } from '../lib/chapters'
+import { getWebtoonData } from '../lib/chapters_strapi'
+
 import ComicSummary from '../components/comicSummary'
+import ComicChapters from '../components/comicChapters'
+
 import "@fortawesome/fontawesome-free/js/all";
+
 
 export async function getStaticProps() {
   const allComicChapters = getWebcomicChapters()
+  const webComicInfo = await getWebtoonData()
+
   return {
     props: {
-      allComicChapters
+      webComicInfo
     }
   }
 }
@@ -21,7 +28,7 @@ export default function Home(props) {
     <Head>
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <title>Kukulkan's Journey</title>
+      <title>{props.webComicInfo.Title}</title>
     </Head>
     <div className="back-layout">
       <section className="hero is-black is-halfheight is-mobile">
@@ -29,7 +36,7 @@ export default function Home(props) {
         <div className="hero-body">
           <div className="container has-text-centered">
             <p className="title">
-              Kukulkan's Journey
+              {props.webComicInfo.Title}
             </p>
           </div>
         </div>
@@ -41,7 +48,7 @@ export default function Home(props) {
               <div className="columns is-centered">
                   <div className="box"> 
                     <Image
-                      src="/images/cover.jpg" // Route of the image file
+                      src={`http://127.0.0.1:1337${props.webComicInfo.Cover.url}`} // Route of the image file
                       height={450} // Desired size with correct aspect ratio
                       width={450} // Desired size with correct aspect ratio
                       alt="Cover"
@@ -58,7 +65,7 @@ export default function Home(props) {
           <div className="column is-8">
             <div className="columns">
               <div className="column is-6 is-offset-6">
-                <ComicSummary></ComicSummary>
+                <ComicSummary>{props.webComicInfo.Summary}</ComicSummary>
               </div>
             </div>
 
@@ -70,35 +77,7 @@ export default function Home(props) {
                           <div className="content">
                             <h2>Chapters</h2>
                           </div>
-                          {props.allComicChapters.map( ({ id, date, title, cover_path}) => (
-                            <article id={id} className="media">
-                              <figure className="media-left">
-                                <Image
-                                      src={cover_path}// Route of the image file
-                                      height={80} // Desired size with correct aspect ratio
-                                      width={80} // Desired size with correct aspect ratio
-                                      alt={cover_path}
-                                      className="image is-square"
-                                    />
-                              </figure>
-                              <div className="media-content">
-                                  <div className="columns is-vcentered is-mobile chapter-content">
-                                    <div className="column">
-                                    <h2 className="subtitle"><Link href={`/chapters/${id}`}><a>{title}</a></Link></h2>
-                                    </div>
-                                  </div>
-                              </div>
-                              <div className="media-right">
-                                <div className="columns is-vcentered is-mobile chapter-content">
-                                  <div className="column">
-                                    <span className="icon">
-                                      <i className="fas fa-chevron-right"></i>
-                                    </span>
-                                  </div>
-                                </div>
-                              </div>
-                            </article>
-                          ))} 
+                          <ComicChapters chapters={props.webComicInfo.chapters}></ComicChapters>
                         </div>
                       </div>
                 </div>
@@ -161,9 +140,6 @@ export default function Home(props) {
             </div>  
           </div>
         </div>
-
-
-
       </section>
       <footer className="footer">
   <div className="content has-text-centered">
