@@ -9,7 +9,7 @@ export default function ComicChapters(props)
                             <article id={chapter.id} className="media">
                               <figure className="media-left">
                                 <Image
-                                      src={`http://127.0.0.1:1337${chapter.Cover.url}`}// Route of the image file
+                                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chapter.Cover.url}`}// Route of the image file
                                       height={64} // Desired size with correct aspect ratio
                                       width={64} // Desired size with correct aspect ratio
                                       alt={chapter.Cover.alternativeText}
@@ -19,7 +19,7 @@ export default function ComicChapters(props)
                               <div className="media-content">
                                   <div className="columns is-vcentered is-mobile chapter-content">
                                     <div className="column">
-                                    <h2 className="subtitle"><Link href={`/chapters/${chapter.id}`}><a>{chapter.Title}</a></Link></h2>
+                                    <h2 className="subtitle"><Link href={`/chapters/${chapter.SEOUrl}`}><a>{chapter.Title}</a></Link></h2>
                                     </div>
                                   </div>
                               </div>

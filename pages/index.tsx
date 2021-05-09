@@ -48,7 +48,7 @@ export default function Home(props) {
               <div className="columns is-centered">
                   <div className="box"> 
                     <Image
-                      src={`http://127.0.0.1:1337${props.webComicInfo.Cover.url}`} // Route of the image file
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.url}`} // Route of the image file
                       height={450} // Desired size with correct aspect ratio
                       width={450} // Desired size with correct aspect ratio
                       alt="Cover"
