@@ -1,8 +1,6 @@
 import { Container } from 'next/app'
 import Head from 'next/head'
 import Image from 'next/image'
-import Link from 'next/link'
-import { getWebcomicChapters } from '../lib/chapters'
 import { getWebtoonData } from '../lib/chapters_strapi'
 
 import ComicSummary from '../components/comicSummary'
@@ -12,7 +10,6 @@ import "@fortawesome/fontawesome-free/js/all";
 
 
 export async function getStaticProps() {
-  const allComicChapters = getWebcomicChapters()
   const webComicInfo = await getWebtoonData()
 
   return {
@@ -65,7 +62,7 @@ export default function Home(props) {
           <div className="column is-8">
             <div className="columns">
               <div className="column is-6 is-offset-6">
-                <ComicSummary>{props.webComicInfo.Summary}</ComicSummary>
+                <ComicSummary chapters={props.webComicInfo.chapters}>{props.webComicInfo.Summary}</ComicSummary>
               </div>
             </div>
 

@@ -3,7 +3,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import "@fortawesome/fontawesome-free/js/all";
 import { getWebtoonChapters, getWebtoonChapterData  } from '../../lib/chapters_strapi'
-import { useRouter } from 'next/router'
 
 export async function getStaticPaths() {
     const paths = await getWebtoonChapters()
