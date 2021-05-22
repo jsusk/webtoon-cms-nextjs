@@ -7,6 +7,7 @@ import ComicSummary from '../components/comicSummary'
 import ComicChapters from '../components/comicChapters'
 
 import "@fortawesome/fontawesome-free/js/all";
+import Link from 'next/link'
 
 
 export async function getStaticProps() {
@@ -91,20 +92,15 @@ export default function Home(props) {
                     <p>
                     <div className="field is-grouped">
                         <p className="control">
-                          <button className="button is-medium">
-                            <span className="icon is-medium">
-                              <i className="fab fa-twitter-square fa-lg"></i>
-                            </span>
-                          </button>
-                        </p>
-                        <p className="control">
-                        <button className="button is-medium">
-                          <span className="icon is-medium">
-                            <i className="fab fa-instagram fa-lg"></i>
-                          </span>
-                        </button>
-                        </p>
-                        
+                          <Link href="https://twitter.com/KukulkanJourney">
+                            <button className="button is-medium">
+                              <span className="icon is-medium">
+                                <i className="fab fa-twitter-square fa-lg"></i>
+                                
+                              </span>
+                            </button>
+                          </Link>
+                        </p>                        
                     </div>
                     </p>
                   </div>

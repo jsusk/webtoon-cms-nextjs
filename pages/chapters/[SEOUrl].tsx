@@ -24,7 +24,7 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export default function Chapter1({ chapterData }) {
+export default function Chapter({ chapterData }) {
     return (
         <>
         <Head>
@@ -39,11 +39,6 @@ export default function Chapter1({ chapterData }) {
                 <div className="navbar-item">
                         <p>{chapterData.title}</p>
                 </div>
-                <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                    <span aria-hidden="true"></span>
-                </a>
             </div>
         </nav>
         <div className="section webcomic-start">
