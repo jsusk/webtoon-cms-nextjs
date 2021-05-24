@@ -15,7 +15,8 @@ export async function getStaticProps() {
 
   return {
     props: {
-      webComicInfo
+      webComicInfo,
+      flights : { mailListEnable: false }
     }
   }
 }
@@ -66,29 +67,35 @@ export default function Home(props) {
                 <ComicSummary chapters={props.webComicInfo.chapters}>{props.webComicInfo.Summary}</ComicSummary>
               </div>
             </div>
-
-            <div className="columns">
-              <div className="column is-6 is-offset-6">
-                <div className="columns">
-                      <div className="column">
-                        <div className="box chapter-list">
-                          <div className="content">
-                            <h2>Chapters</h2>
+            {
+              props.webComicInfo.chapters.length > 0 ? (
+              <div className="columns">
+                <div className="column is-6 is-offset-6">
+                  <div className="columns">
+                        <div className="column">
+                          <div className="box chapter-list">
+                            <div className="content">
+                              <h2>Chapters</h2>
+                            </div>
+                            <ComicChapters chapters={props.webComicInfo.chapters}></ComicChapters>
                           </div>
-                          <ComicChapters chapters={props.webComicInfo.chapters}></ComicChapters>
                         </div>
-                      </div>
+                  </div>
                 </div>
               </div>
-            </div>
-
+              )
+              :
+              (
+              <></>
+              )
+            }
           </div>
           <div className="column is-6 is-offset-0">
             <div className="columns">
               <div className="column is-4 ">
                 <div className="box">
                   <div className="content">
-                    <h3>Follow us also on:</h3>
+                    <h3>Follow us on:</h3>
                     <p>
                     <div className="field is-grouped">
                         <p className="control">
@@ -107,6 +114,8 @@ export default function Home(props) {
                 </div>
               </div>
             </div>
+            {
+            props.flights.mailListEnable ? 
             <div className="columns">
               <div className="column is-4 ">
                 <div className="box">
@@ -130,13 +139,17 @@ export default function Home(props) {
                   </div>
                 </div>
               </div>
-            </div>  
+            </div> 
+            :
+            <></> 
+          }
           </div>
         </div>
       </section>
-      <footer className="footer">
-  <div className="content has-text-centered">
-    
+<footer className="footer has-background-black">
+  <div className="content has-text-centered has-text-white">
+    <p>
+      <strong className="has-text-white">Kukulkan's Journey</strong> -  All Rights Reserved </p>
   </div>
 </footer>
     </div>
