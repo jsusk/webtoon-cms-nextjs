@@ -6,8 +6,18 @@ export default function ComicSummary(props){
 
     const [isVisiable, setIsVisiable] = useState(false)
     let chapterLenght = props.chapters.length;
+    let renderFirstChapters = [];
     let firstChapter = props.chapters[0];
+    if(firstChapter)
+    {
+        renderFirstChapters.push(firstChapter);
+    }
+    let renderLatestChapter = [];
     let lastChapter = props.chapters[props.chapters.length -1 ];
+    if(lastChapter)
+    {
+        renderLatestChapter.push(lastChapter);
+    }
 
 
     return (
@@ -28,18 +38,27 @@ export default function ComicSummary(props){
                         <div className={`column  is-half ${styles.summaryActions}`}>
                         <div className="field is-grouped is-grouped-centered">
                             <p className="control">
-                            <Link href={`/chapters/${firstChapter.SEOUrl}`}>
-                                <a className="button is-primary">
-                                    First Chapter
-                                </a>
-                            </Link>
+                            {
+                                renderFirstChapters.map( firstChapter => (
+                                    <Link href={`/chapters/${firstChapter.SEOUrl}`}>
+                                    <a className="button is-primary">
+                                        First Chapter
+                                    </a>
+                                </Link>
+                                ))
+                            }
+
                             </p>
                             <p className="control">
-                            <Link href={`/chapters/${lastChapter.SEOUrl}`}>
-                                <a className="button is-info">
-                                    Latest Chapter
-                                </a>
-                            </Link>
+                            {
+                                renderLatestChapter.map( lastChapter => (
+                                <Link href={`/chapters/${lastChapter.SEOUrl}`}>
+                                    <a className="button is-info">
+                                        Latest Chapter
+                                    </a>
+                                </Link>
+                                ))
+                            }
                             </p>
                         </div>
                         </div>
