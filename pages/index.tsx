@@ -52,6 +52,7 @@ export default function Home(props) {
                       width={450} // Desired size with correct aspect ratio
                       alt={props.webComicInfo.Cover.alternativeText}
                       className="image is-square"
+                      unoptimized={true}
                       priority={true}
                     />
                   </div>
