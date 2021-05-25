@@ -47,10 +47,10 @@ export default function Home(props) {
               <div className="columns is-centered">
                   <div className="box"> 
                     <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.url}`} // Route of the image file
+                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.formats.medium.url}`} // Route of the image file
                       height={450} // Desired size with correct aspect ratio
                       width={450} // Desired size with correct aspect ratio
-                      alt="Cover"
+                      alt={props.webComicInfo.Cover.alternativeText}
                       className="image is-square"
                       priority={true}
                     />
