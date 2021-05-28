@@ -49,7 +49,7 @@ export default function Chapter({ chapterData }) {
                     <div className="column is-half is-offset-one-quarter ">
                         <div className="tile is-ancestor">
                             <div className="tile is-full is-vertical is-parent">
-                            {chapterData.ContentImage.map( (image) => (
+                            {chapterData.Panels.map( (image) => (
                                 <div className="tile">
                                     <Image
                                         id={image.id}

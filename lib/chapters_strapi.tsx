@@ -1,7 +1,8 @@
 export async function getWebtoonData() 
 {
 
-    const webtoon = await fetch(`${process.env.STRAPI_URL}/webtoons`)
+    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons`;
+    const webtoon = await fetch(webtoonsUrl)
     const data = await webtoon.json();
 
 
@@ -50,7 +51,7 @@ export async function getWebtoonChapterData(SEOUrl)
     const chapter = await fetch(`${process.env.STRAPI_URL}/chapters?SEOUrl=${SEOUrl}`)
     const chapter_data_array = await chapter.json()
     const chapter_data = chapter_data_array[0]
-    chapter_data.ContentImage = chapter_data.ContentImage.sort((a, b) => a.name.localeCompare(b.name, 'en', {numeric: true, ignorePunctuation: true}))
+    chapter_data.Panels = chapter_data.Panels.sort((a, b) => a.name.localeCompare(b.name, 'en', {numeric: true, ignorePunctuation: true}))
     if(!chapter_data)
     {
         return {

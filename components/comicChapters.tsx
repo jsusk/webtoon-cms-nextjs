@@ -9,10 +9,12 @@ export default function ComicChapters(props)
                             <article id={chapter.id} className="media">
                               <figure className="media-left">
                                 <Image
-                                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chapter.Cover.url}`}// Route of the image file
+                                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${chapter.Cover.formats.thumbnail.url}`}// Route of the image file
                                       height={64} // Desired size with correct aspect ratio
                                       width={64} // Desired size with correct aspect ratio
+                                      unoptimized={true}
                                       alt={chapter.Cover.alternativeText}
+                                      priority={true}
                                       className="image is-square is-64x64"
                                     />
                               </figure>
