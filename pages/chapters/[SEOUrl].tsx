@@ -58,6 +58,7 @@ export default function Chapter({ chapterData }) {
                                         width={image.width} // Desired size with correct aspect ratio
                                         alt={image.alternativeText}
                                         className="image is-3by5"
+                                        unoptimized={true}
                                         priority={true}
                                     />
                                 </div>
