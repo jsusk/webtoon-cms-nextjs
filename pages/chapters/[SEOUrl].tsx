@@ -28,7 +28,10 @@ export default function Chapter({ chapterData }) {
     return (
         <>
         <Head>
+        <meta charSet="utf-8"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <title>chapterData.Title</title>
+            <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
         </Head>
 
         <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">

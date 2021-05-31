@@ -28,6 +28,7 @@ export default function Home(props) {
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <title>{props.webComicInfo.Title}</title>
+      <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
     </Head>
     <div className="back-layout">
       <section className="hero is-black is-halfheight is-mobile">
@@ -108,6 +109,16 @@ export default function Home(props) {
                               </span>
                             </button>
                           </Link>
+                          
+                        </p>
+                        <p className="control">
+                          <Link href="https://www.reddit.com/r/kukulkansjourney/">
+                              <button className="button is-medium">
+                                <span className="icon is-medium">
+                                  <i className="fab fa-reddit-square"></i>
+                                </span>
+                              </button>
+                            </Link>
                         </p>                        
                     </div>
                     </p>
