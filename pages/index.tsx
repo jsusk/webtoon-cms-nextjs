@@ -115,7 +115,7 @@ export default function Home(props) {
                           <Link href="https://www.reddit.com/r/kukulkansjourney/">
                               <button className="button is-medium">
                                 <span className="icon is-medium">
-                                  <i className="fab fa-reddit-square"></i>
+                                  <i className="fab fa-reddit-square fa-lg"></i>
                                 </span>
                               </button>
                             </Link>
