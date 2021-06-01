@@ -16,7 +16,7 @@ export async function getStaticProps() {
   return {
     props: {
       webComicInfo,
-      flights : { mailListEnable: false }
+      flights : { mailListEnable: true }
     }
   }
 }
@@ -29,6 +29,7 @@ export default function Home(props) {
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <title>{props.webComicInfo.Title}</title>
       <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
+      <script src="/js/mail.js"></script>
     </Head>
     <div className="back-layout">
       <section className="hero is-black is-halfheight is-mobile">
@@ -131,23 +132,9 @@ export default function Home(props) {
             <div className="columns">
               <div className="column is-4 ">
                 <div className="box">
-                  <div className="content">
-                    <h3>Sign to our mailing list:</h3>
-                    <p>Get notified when new chapter is issue and get Chapter 1 for free on PDF when sign up</p>
-                    <div className="field has-addons">
-                  
-                      <p className="control has-icons-left">
-                        <input className="input" type="email" placeholder="Email" />
-                        <span className="icon is-small is-left">
-                          <i className="fas fa-envelope fa-sm"></i>
-                        </span>
-                      </p>
-                      <div className="control">
-                        <a className="button is-info">
-                          Sign Up
-                        </a>
-                      </div>
-                    </div>
+                  <div className="ml-form-embed"
+                    data-account="3197461:p9m0x7n0z5"
+                    data-form="4191304:m2w7x4">
                   </div>
                 </div>
               </div>
