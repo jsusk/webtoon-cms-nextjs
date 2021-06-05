@@ -47,7 +47,7 @@ export default function Home(props) {
           <div className="columns is-centered is-mobile">
             <div className="column is-10">
               <div className="columns is-centered">
-                  <div className="box"> 
+                  <div className="box cover-box"> 
                     <Image
                       src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.formats.medium.url}`} // Route of the image file
                       height={450} // Desired size with correct aspect ratio
