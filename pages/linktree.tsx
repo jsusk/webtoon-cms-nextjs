@@ -18,6 +18,22 @@ export async function getStaticProps() {
   }
 
 export default function Home(props) {
+
+  let chapters = props.webComicInfo.chapters;
+  let renderFirstChapters = [];
+  let firstChapter = chapters[0];
+  if(firstChapter)
+  {
+      renderFirstChapters.push(firstChapter);
+  }
+  let renderLatestChapter = [];
+  let lastChapter = chapters[chapters.length -1 ];
+  if(lastChapter)
+  {
+      renderLatestChapter.push(lastChapter);
+  }
+
+
   return (
     <>
     <Head>
@@ -60,13 +76,28 @@ export default function Home(props) {
       <section className="section">
         <div className="columns">
           <div className="column is-8">
-          <div className="columns">
-              <div className="column is-6 is-offset-6">
-                  <Link href="/chapters/chapter-1-part-1">
-                    <button className="button is-large is-fullwidth is-rounded is-primary ">Read Here!</button>
-                  </Link>
+          {
+            renderLatestChapter.map(chapter => (
+              <div className="columns">
+                <div className="column is-6 is-offset-6">
+                    <Link href={`/chapters/${chapter.SEOUrl}`}>
+                      <button className="button is-large is-fullwidth is-rounded is-primary ">Latest Chapter</button>
+                    </Link>
+                </div>
               </div>
-            </div>
+            ))
+          }
+          {
+            renderFirstChapters.map(chapter => (
+              <div className="columns">
+                <div className="column is-6 is-offset-6">
+                    <Link href={`/chapters/${chapter.SEOUrl}`}>
+                      <button className="button is-large is-fullwidth is-rounded is-success">First Chapter</button>
+                    </Link>
+                </div>
+              </div>
+            ))
+          }
             <div className="columns">
               <div className="column is-6 is-offset-6">
                   <Link href="https://www.webtoons.com/en/challenge/kukulkans-journey/list?title_no=650279">
