@@ -20,6 +20,28 @@ export async function getWebtoonData()
 
 }
 
+
+
+export async function getWebtoonDataWithId(webtoonId) 
+{
+
+    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons/${webtoonId}`;
+    const webtoon = await fetch(webtoonsUrl)
+    const kukulkanComic = await webtoon.json();
+
+
+    if(!kukulkanComic)
+    {
+        return {
+            notFound: true
+        }
+    }
+
+    return kukulkanComic;
+
+}
+
+
 export async function getWebtoonChapters() 
 {
     const webtoon = await getWebtoonData();
@@ -44,6 +66,29 @@ export async function getWebtoonChapters()
       }
     }
   })
+}
+
+export async function getAllWebtoonsIds() 
+{
+
+    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons`;
+    const webtoon = await fetch(webtoonsUrl)
+    const kukulkanComic = await webtoon.json();
+
+    if(!kukulkanComic)
+    {
+        return {
+            notFound: true
+        }
+    }
+
+    return kukulkanComic.map(webtoon => {
+      return {
+        params: {
+          WebtoonId: ""+webtoon.id
+        }
+      }
+    })
 }
 
 export async function getWebtoonChapterData(SEOUrl) 
