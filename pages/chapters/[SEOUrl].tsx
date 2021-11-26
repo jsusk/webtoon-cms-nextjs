@@ -39,10 +39,50 @@ export default function Chapter({ chapterData }) {
         <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
                 <a className="navbar-item" onClick={() => router.back()}>
-                {chapterData.webtoon.Title}
+                    {chapterData.webtoon.Title}
                 </a>
+                <div className="navbar-item">
+                    
+                </div>
+                {/*<div className="navbar-item">
+                        <div className="field has-addons">
+                            <p className="control">
+                                <button className="button">Next</button>
+                            </p>
+                        </div>
+                </div>*/}
+            </div>
+            <div className="navbar-menu is-active">
+                <div className="navbar-start">
+                    <div className="navbar-item">
+                        <div className="level">
+                            <div className="level-item has-text-centered">
+                                <div className="field has-addons ">
+                                    <p className="control">
+                                        <button className="button">Previous Chapter</button>
+                                        
+                                        <button className="button">Next Chapter</button>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </nav>
+        {/*<nav className="level">
+            <div className="level-item has-text-centered">
+                {chapterData.Title}
+            </div>
+            <div className="level-item has-text-centered">
+                <div className="field has-addons ">
+                    <p className="control">
+                        <button className="button">Previous Chapter</button>
+                        <button className="button">Next Chapter</button>
+                    </p>
+                </div>
+            </div>
+    </nav>*/}
         <div className="section webcomic-start">
         </div>
         <div className="section pl-3 pr-0">
