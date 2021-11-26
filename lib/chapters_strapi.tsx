@@ -20,12 +20,31 @@ export async function getWebtoonData()
 
 }
 
+export async function getAllWebtoons() 
+{
+
+    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons`;
+    const webtoon = await fetch(webtoonsUrl)
+    const AllWebtoons = await webtoon.json();
+
+
+    if(!AllWebtoons)
+    {
+        return {
+            notFound: true
+        }
+    }
+
+    return AllWebtoons;
+
+}
+
 
 
 export async function getWebtoonDataWithId(webtoonId) 
 {
 
-    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons/${webtoonId}`;
+    const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons?WebtoonSEOURL=${webtoonId}`;
     const webtoon = await fetch(webtoonsUrl)
     const kukulkanComic = await webtoon.json();
 
@@ -37,15 +56,18 @@ export async function getWebtoonDataWithId(webtoonId)
         }
     }
 
-    return kukulkanComic;
+    return kukulkanComic[0];
 
 }
 
 
 export async function getWebtoonChapters() 
 {
-    const webtoon = await getWebtoonData();
-    const chapters = webtoon.chapters;
+    const webtoonList = await getAllWebtoons();
+    const allChapters = webtoonList.flatMap(webtoon => {
+      return webtoon.chapters
+    }) 
+
   // Returns an array that looks like this:
   // [
   //   {
@@ -59,13 +81,16 @@ export async function getWebtoonChapters()
   //     }
   //   }
   // ]
-  return chapters.map(chapter => {
+
+  let chaptersSeoList = allChapters.map(chapter => {
     return {
       params: {
         SEOUrl: chapter.SEOUrl
       }
     }
-  })
+  });
+
+  return chaptersSeoList;
 }
 
 export async function getAllWebtoonsIds() 
@@ -85,7 +110,7 @@ export async function getAllWebtoonsIds()
     return kukulkanComic.map(webtoon => {
       return {
         params: {
-          WebtoonId: ""+webtoon.id
+          WebtoonId: webtoon.WebtoonSEOURL
         }
       }
     })

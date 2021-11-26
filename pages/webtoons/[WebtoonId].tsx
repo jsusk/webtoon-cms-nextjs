@@ -31,6 +31,17 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Home(props) {
+
+  let headerColor = props.webComicInfo.PageColor;
+  let headerColorOrDefault = "black";
+
+  if(headerColor && headerColor.length > 0)
+  {
+    headerColorOrDefault = headerColor;
+  }
+
+  console.log(headerColorOrDefault)
+
   return (
     <>
     <Head>
@@ -41,7 +52,7 @@ export default function Home(props) {
       <script src="/js/mail.js"></script>
     </Head>
     <div className="back-layout">
-      <section className="hero is-black is-halfheight is-mobile">
+      <section className={`hero is-${headerColorOrDefault} is-halfheight is-mobile`}>
         <div className="hero-head"></div>
         <div className="hero-body">
           <div className="container has-text-centered">
@@ -154,7 +165,7 @@ export default function Home(props) {
           </div>
         </div>
       </section>
-<footer className="footer has-background-black">
+<footer className={`footer has-background-${headerColorOrDefault}`}>
   <div className="content has-text-centered has-text-white">
     <p>
       <strong className="has-text-white">Kukulkan's Journey</strong> -  All Rights Reserved </p>

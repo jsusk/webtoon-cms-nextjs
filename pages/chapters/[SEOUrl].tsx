@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 import "@fortawesome/fontawesome-free/js/all";
 import { getWebtoonChapters, getWebtoonChapterData  } from '../../lib/chapters_strapi'
 
@@ -25,22 +26,21 @@ export async function getStaticProps({ params }) {
 }
 
 export default function Chapter({ chapterData }) {
+    const router = useRouter();
+
     return (
         <>
         <Head>
         <meta charSet="utf-8"/>
-            <title>chapterData.Title</title>
+            <title>{chapterData.Title}</title>
             <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
         </Head>
 
         <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
             <div className="navbar-brand">
-                <Link href="/">
-                    <a className="navbar-item">Kukulkan's Journey</a>
-                </Link>
-                <div className="navbar-item">
-                        <p>{chapterData.title}</p>
-                </div>
+                <a className="navbar-item" onClick={() => router.back()}>
+                {chapterData.webtoon.Title}
+                </a>
             </div>
         </nav>
         <div className="section webcomic-start">
