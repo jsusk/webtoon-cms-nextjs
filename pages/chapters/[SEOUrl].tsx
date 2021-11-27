@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { useRouter } from 'next/router'
 import "@fortawesome/fontawesome-free/js/all";
 import { getWebtoonChapters, getWebtoonChapterData  } from '../../lib/chapters_strapi'
-
+import ChapterNavbar from '../../components/chapterNavbar'
 export async function getStaticPaths() {
     const paths = await getWebtoonChapters()
 
@@ -35,54 +35,7 @@ export default function Chapter({ chapterData }) {
             <title>{chapterData.Title}</title>
             <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
         </Head>
-
-        <nav className="navbar is-dark is-fixed-top" role="navigation" aria-label="main navigation">
-            <div className="navbar-brand">
-                <a className="navbar-item" onClick={() => router.back()}>
-                    {chapterData.webtoon.Title}
-                </a>
-                <div className="navbar-item">
-                    
-                </div>
-                {/*<div className="navbar-item">
-                        <div className="field has-addons">
-                            <p className="control">
-                                <button className="button">Next</button>
-                            </p>
-                        </div>
-                </div>*/}
-            </div>
-            <div className="navbar-menu is-active">
-                <div className="navbar-start">
-                    <div className="navbar-item">
-                        <div className="level">
-                            <div className="level-item has-text-centered">
-                                <div className="field has-addons ">
-                                    <p className="control">
-                                        <button className="button">Previous Chapter</button>
-                                        
-                                        <button className="button">Next Chapter</button>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </nav>
-        {/*<nav className="level">
-            <div className="level-item has-text-centered">
-                {chapterData.Title}
-            </div>
-            <div className="level-item has-text-centered">
-                <div className="field has-addons ">
-                    <p className="control">
-                        <button className="button">Previous Chapter</button>
-                        <button className="button">Next Chapter</button>
-                    </p>
-                </div>
-            </div>
-    </nav>*/}
+        <ChapterNavbar chapterData = {chapterData}></ChapterNavbar>
         <div className="section webcomic-start">
         </div>
         <div className="section pl-3 pr-0">
@@ -91,21 +44,40 @@ export default function Chapter({ chapterData }) {
                     <div className="column is-half is-offset-one-quarter ">
                         <div className="tile is-ancestor">
                             <div className="tile is-full is-vertical is-parent">
-                            {chapterData.Panels.map( (image) => (
-                                <div className="tile">
-                                    <Image
-                                        id={image.id}
-                                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}// Route of the image file
-                                        height={image.height} // Desired size with correct aspect ratio
-                                        width={image.width} // Desired size with correct aspect ratio
-                                        alt={image.alternativeText}
-                                        className="image is-3by5"
-                                        unoptimized={true}
-                                        priority={true}
-                                    />
-                                </div>
-                            ))}
+                                {chapterData.Panels.slice(0,3).map( (image) => (
+                                    <div className="tile">
+                                        <Image
+                                            id={image.id}
+                                            src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}// Route of the image file
+                                            height={image.height} // Desired size with correct aspect ratio
+                                            width={image.width} // Desired size with correct aspect ratio
+                                            alt={image.alternativeText}
+                                            className="image is-3by5"
+                                            unoptimized={true}
+                                            priority={true}
+                                        />
+                                    </div>
+                                ))}
+                            
+                                    
+                            
                             </div>
+                        </div>
+                    </div>
+                </div>
+                <div className="columns">
+                    <div className="column is-12">
+                        <div className="field is-grouped is-grouped-centered">
+                            <p className="control">
+                                <Link href={`/chapters/${chapterData.PreviousChapter }`}>
+                                    <button className="button is-info is-pulled-right is-medium" disabled={!chapterData.PreviousChapter}>Previous Chapter</button>
+                                </Link>
+                            </p>
+                            <p className="control">
+                                <Link href={`/chapters/${chapterData.NextChapter }`}>
+                                    <button className="button is-primary is-pulled-left is-medium" disabled={!chapterData.NextChapter}>Next Chapter</button>
+                                </Link>
+                            </p>
                         </div>
                     </div>
                 </div>

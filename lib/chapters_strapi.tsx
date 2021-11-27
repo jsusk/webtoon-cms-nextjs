@@ -93,6 +93,15 @@ export async function getWebtoonChapters()
   return chaptersSeoList;
 }
 
+export async function getWebtoonByWebtoonId(webtoonId) 
+{
+  const webtoonsUrl = `${process.env.STRAPI_URL}/webtoons/${webtoonId}`;
+  const webtoon = await fetch(webtoonsUrl)
+  const kukulkanComic = await webtoon.json();
+
+  return kukulkanComic;
+}
+
 export async function getAllWebtoonsIds() 
 {
 
@@ -118,7 +127,7 @@ export async function getAllWebtoonsIds()
 
 export async function getWebtoonChapterData(SEOUrl) 
 {
-    const chapter = await fetch(`${process.env.STRAPI_URL}/chapters?SEOUrl=${SEOUrl}`)
+    const chapter = await fetch(`${process.env.STRAPI_URL}/chapters?SEOUrl=${SEOUrl}`);
     const chapter_data_array = await chapter.json()
     const chapter_data = chapter_data_array[0]
     chapter_data.Panels = chapter_data.Panels.sort((a, b) => a.name.localeCompare(b.name, 'en', {numeric: true, ignorePunctuation: true}))
@@ -128,6 +137,17 @@ export async function getWebtoonChapterData(SEOUrl)
             notFound: true
         }
     }
+
+    //Get Previous and Next Chapter Data
+    const parentWebtoonData = await getWebtoonByWebtoonId(chapter_data.webtoon.id);
+    const allWebtoonChapters = parentWebtoonData.chapters;
+    const sortedChapters = allWebtoonChapters.sort((a,b) => a.created_at.localeCompare(b.created_at))
+    const findIndex = sortedChapters.findIndex(chapter => chapter.id == chapter_data.id);
+
+    
+    chapter_data.PreviousChapter = findIndex > 0 ? sortedChapters[findIndex-1].SEOUrl : null;
+    chapter_data.NextChapter = findIndex < sortedChapters.length - 1 ?  sortedChapters[findIndex + 1].SEOUrl : null;
+    chapter_data.WebtoonSEOURL = parentWebtoonData.WebtoonSEOURL;
 
     return chapter_data;
 
