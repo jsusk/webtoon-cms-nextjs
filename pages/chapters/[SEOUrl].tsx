@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import "@fortawesome/fontawesome-free/js/all";
 import { getWebtoonChapters, getWebtoonChapterData  } from '../../lib/chapters_strapi'
 import ChapterNavbar from '../../components/chapterNavbar'
+import NavigationButtons from '../../components/navigationButtons'
 export async function getStaticPaths() {
     const paths = await getWebtoonChapters()
 
@@ -44,7 +45,7 @@ export default function Chapter({ chapterData }) {
                     <div className="column is-half is-offset-one-quarter ">
                         <div className="tile is-ancestor">
                             <div className="tile is-full is-vertical is-parent">
-                                {chapterData.Panels.slice(0,3).map( (image) => (
+                                {chapterData.Panels.slice.map( (image) => (
                                     <div className="tile">
                                         <Image
                                             id={image.id}
@@ -67,18 +68,7 @@ export default function Chapter({ chapterData }) {
                 </div>
                 <div className="columns">
                     <div className="column is-12">
-                        <div className="field is-grouped is-grouped-centered">
-                            <p className="control">
-                                <Link href={`/chapters/${chapterData.PreviousChapter }`}>
-                                    <button className="button is-info is-pulled-right is-medium" disabled={!chapterData.PreviousChapter}>Previous Chapter</button>
-                                </Link>
-                            </p>
-                            <p className="control">
-                                <Link href={`/chapters/${chapterData.NextChapter }`}>
-                                    <button className="button is-primary is-pulled-left is-medium" disabled={!chapterData.NextChapter}>Next Chapter</button>
-                                </Link>
-                            </p>
-                        </div>
+                        <NavigationButtons chapterData = {chapterData}></NavigationButtons>
                     </div>
                 </div>
                 

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import NavigationButtons from './navigationButtons';
 
 export default function ChapterNavbar(props)
 {
@@ -27,20 +28,7 @@ export default function ChapterNavbar(props)
                 <div className="navbar-end">
                     <div className="navbar-item">
                         <div className="level">
-                            <div className="level-item has-text-centered">
-                                <div className="field is-grouped">
-                                    <p className="control">
-                                        <div className="buttons">
-                                            <Link href={`/chapters/${props.chapterData.PreviousChapter }`}>
-                                                <button className="button is-info is-medium" disabled={!props.chapterData.PreviousChapter}>Previous Chapter</button>
-                                            </Link>
-                                            <Link href={`/chapters/${props.chapterData.NextChapter }`}>
-                                                <button className="button is-primary is-medium" disabled={!props.chapterData.NextChapter}>Next Chapter</button>
-                                            </Link>
-                                        </div>
-                                    </p>
-                                </div>
-                            </div>
+                           <NavigationButtons chapterData={props.chapterData}></NavigationButtons>
                         </div>
                     </div>
                 </div>
