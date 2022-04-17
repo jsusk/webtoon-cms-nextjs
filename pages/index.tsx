@@ -39,7 +39,7 @@ export default function Home(props) {
             Teots Webtoons
           </p>
           <p className="subtitle">
-            Indi mexican comic creators
+            Indie mexican comic creators
           </p>
         </div>
      </div>
@@ -79,7 +79,9 @@ export default function Home(props) {
                         <Link href={`/chapters/${comic.chapters[0].SEOUrl}`}>
                           <a href="#" className="card-footer-item">Read 1st Ch</a>
                         </Link>
-                        <a href="#" className="card-footer-item">All Chapters</a>
+                        <Link href={`/webtoons/${comic.WebtoonSEOURL}`}>
+                          <a href="#" className="card-footer-item">All Chapters</a>
+                        </Link>
                       </footer>
                     </div>
                   </div>
