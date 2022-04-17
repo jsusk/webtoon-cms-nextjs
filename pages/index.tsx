@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { getAllWebtoons } from '../lib/chapters_strapi'
 import styles from './../styles/index.module.sass';
+import IndexNavbar from '../components/indexNavbar'
 
 import "@fortawesome/fontawesome-free/js/all";
 import Link from 'next/link'
@@ -30,40 +31,21 @@ export default function Home(props) {
       <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
       <script src="/js/mail.js"></script>
     </Head>
-    <nav className="navbar " role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <a className="navbar-item" >
-          <p>Comics</p>
-        </a>
-        <a role="button" className="navbar-burger" aria-label="menu" aria-expanded="false">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
-      <div className='navbar-menu'>
-        <a className='navbar-item'>
-          Home
-        </a>
-        <a className='navbar-item'>
-          Home
-        </a>
-      </div>
-    </nav>
+    <IndexNavbar></IndexNavbar>
     <section className="hero is-medium is-dark">
       <div className="hero-body">
         <div className='container has-text-centered'>
           <p className="title">
-            Medium hero
+            Teots Webtoons
           </p>
           <p className="subtitle">
-            Medium subtitle
+            Indi mexican comic creators
           </p>
         </div>
      </div>
     </section>
     <section className='section'>
-      <div className="container">
+      <div className="container is-max-desktop">
         <div className={`columns is-flex is-flex-wrap-nowrap ${styles.cardContainer}`}>
           {
             props.webComicInfo.map((comic,index) => {
@@ -93,6 +75,12 @@ export default function Home(props) {
                           {comic.Summary}
                         </div>
                       </div>
+                      <footer className="card-footer">
+                        <Link href={`/chapters/${comic.chapters[0].SEOUrl}`}>
+                          <a href="#" className="card-footer-item">Read 1st Ch</a>
+                        </Link>
+                        <a href="#" className="card-footer-item">All Chapters</a>
+                      </footer>
                     </div>
                   </div>
                 </>

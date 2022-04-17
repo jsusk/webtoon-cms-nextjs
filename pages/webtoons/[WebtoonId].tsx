@@ -8,6 +8,7 @@ import ComicChapters from '../../components/comicChapters'
 
 import "@fortawesome/fontawesome-free/js/all";
 import Link from 'next/link'
+import IndexNavbar from '../../components/indexNavbar'
 
 export async function getStaticPaths() {
     const paths = await getAllWebtoonsIds()
@@ -40,8 +41,6 @@ export default function Home(props) {
     headerColorOrDefault = headerColor;
   }
 
-  console.log(headerColorOrDefault)
-
   return (
     <>
     <Head>
@@ -51,8 +50,9 @@ export default function Home(props) {
       <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
       <script src="/js/mail.js"></script>
     </Head>
+    <IndexNavbar></IndexNavbar>
     <div className="back-layout">
-      <section className={`hero is-${headerColorOrDefault} is-halfheight is-mobile`}>
+      <section className={`hero is-${headerColorOrDefault} is-halfheight `}>
         <div className="hero-head"></div>
         <div className="hero-body">
           <div className="container has-text-centered">

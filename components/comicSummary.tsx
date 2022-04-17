@@ -18,8 +18,6 @@ export default function ComicSummary(props){
     {
         renderLatestChapter.push(lastChapter);
     }
-
-
     return (
             <>
                 <div className="box">
