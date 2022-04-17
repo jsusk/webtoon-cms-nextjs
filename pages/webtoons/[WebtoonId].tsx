@@ -168,7 +168,8 @@ export default function Home(props) {
 <footer className={`footer has-background-${headerColorOrDefault}`}>
   <div className="content has-text-centered has-text-white">
     <p>
-      <strong className="has-text-white">Kukulkan's Journey</strong> -  All Rights Reserved </p>
+      <strong className="has-text-white">Kukulkan's Journey</strong> -  All Rights Reserved 
+    </p>
   </div>
 </footer>
     </div>
