@@ -10,6 +10,8 @@ import "@fortawesome/fontawesome-free/js/all";
 import Link from 'next/link'
 import IndexNavbar from '../../components/indexNavbar'
 
+import styles from '../../styles/home.module.sass'
+
 export async function getStaticPaths() {
     const paths = await getAllWebtoonsIds()
 
@@ -63,24 +65,24 @@ export default function Home(props) {
         </div>
         <div className="hero-foot"></div>
       </section>
-      <section className="section webcomic-cover">
-          <div className="columns is-centered is-mobile">
-            <div className="column is-10">
-              <div className="columns is-centered">
-                  <div className="box cover-box"> 
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.formats.medium.url}`} // Route of the image file
-                      height={450} // Desired size with correct aspect ratio
-                      width={450} // Desired size with correct aspect ratio
-                      alt={props.webComicInfo.Cover.alternativeText}
-                      className="image is-square"
-                      unoptimized={true}
-                      priority={true}
-                    />
-                  </div>
+      <section className={`section ${styles.webcomicCover}`}>
+        <div className='container'>
+          <div className='columns is-centered'>
+            <div className={`column is-flex is-narrow has-text-centered ${styles.coverBox}`}>
+              <div className={`box`}>
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.formats.medium.url}`} // Route of the image file
+                  height={450} // Desired size with correct aspect ratio
+                  width={450} // Desired size with correct aspect ratio
+                  alt={props.webComicInfo.Cover.alternativeText}
+                  className={`image is-square ${styles.coverPicture}`}
+                  unoptimized={true}
+                  priority={true}
+                />
               </div>
             </div>
           </div>
+        </div>
       </section>
       <section className="section">
         <div className="columns">

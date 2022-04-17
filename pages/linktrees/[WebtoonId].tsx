@@ -2,7 +2,7 @@ import { Container } from 'next/app'
 import Head from 'next/head'
 import Image from 'next/image'
 import {  getAllWebtoonsIds, getWebtoonDataWithId} from '../../lib/chapters_strapi'
-
+import  styles from '../../styles/home.module.sass'
 
 import "@fortawesome/fontawesome-free/js/all";
 import Link from 'next/link'
@@ -87,7 +87,7 @@ export default function Home(props) {
         </div>
         <div className="hero-foot"></div>
       </section>
-      <section className="section webcomic-cover">
+      <section className={`section ${styles.webcomicCover}`}>
           <div className="columns is-centered is-mobile">
             <div className="column is-narrow box">
                 <div>
