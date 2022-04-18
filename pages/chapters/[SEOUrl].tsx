@@ -45,8 +45,8 @@ export default function Chapter({ chapterData }) {
                     <div className="column is-half is-offset-one-quarter ">
                         <div className="tile is-ancestor">
                             <div className="tile is-full is-vertical is-parent">
-                                {chapterData.Panels.map( (image) => (
-                                    <div className="tile">
+                                {chapterData.Panels.map( (image, index) => (
+                                    <div key={index} className="tile">
                                         <Image
                                             id={image.id}
                                             src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${image.url}`}// Route of the image file

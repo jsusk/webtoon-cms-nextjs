@@ -18,14 +18,6 @@ export default function IndexNavbar(props)
           <span aria-hidden="true"></span>
         </a>
       </div>
-      <div className='navbar-menu'>
-        <a className='navbar-item'>
-          Home
-        </a>
-        <a className='navbar-item'>
-          Home
-        </a>
-      </div>
     </nav>
     </>)
 }

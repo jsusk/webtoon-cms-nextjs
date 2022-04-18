@@ -1,4 +1,3 @@
-import { Container } from 'next/app'
 import Head from 'next/head'
 import Image from 'next/image'
 import { getAllWebtoons } from '../lib/chapters_strapi'
@@ -51,7 +50,7 @@ export default function Home(props) {
             props.webComicInfo.map((comic,index) => {
               return (
                 <>
-                  <div className={`column is-3 ${styles.comicCard}`}>
+                  <div key={index} className={`column is-3 ${styles.comicCard}`}>
                     <div className="card">
                       <div className='card-header'>
                         <p className='card-header-title'>
@@ -92,22 +91,13 @@ export default function Home(props) {
         </div>
       </div>
     </section>
-<footer className={`footer has-background-dark`}>
-  <div className="content has-text-white has-text-centered">
-    <p>
-      <strong className='has-text-white'>Kukulkan's Journey</strong> -  All Rights Reserved 
-    </p>
-  </div>
-</footer>
-    {/* <section className={`section ${styles.banner}`} >
-      <div className="columns">
-        <div className={`column is-4 is-offset-4  ${styles.banner}`} style={{backgroundImage: `url('${backImg}')`}}>
-
-        </div>
-
+    <footer className={`footer has-background-dark`}>
+      <div className="content has-text-white has-text-centered">
+        <p>
+          <strong className='has-text-white'>Kukulkan's Journey</strong> -  All Rights Reserved 
+        </p>
       </div>
-    </section> */}
-
+    </footer>
     </>
 
   )
