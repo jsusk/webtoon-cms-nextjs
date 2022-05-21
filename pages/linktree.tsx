@@ -1,152 +1,110 @@
-import { Container } from 'next/app'
 import Head from 'next/head'
 import Image from 'next/image'
-import { getWebtoonData } from '../lib/chapters_strapi'
-
+import { getAllWebtoons } from '../lib/chapters_strapi'
+//import styles from './../styles/index.module.sass';
+import IndexNavbar from '../components/indexNavbar'
 
 import "@fortawesome/fontawesome-free/js/all";
 import Link from 'next/link'
 
+
 export async function getStaticProps() {
-    const webComicInfo = await getWebtoonData()
-  
-    return {
-      props: {
-        webComicInfo
-      }
+  const webComicInfo = await getAllWebtoons()
+  return {
+    props: {
+      webComicInfo,
+      flights : { mailListEnable: true }
     }
   }
+}
 
 export default function Home(props) {
-
-  let chapters = props.webComicInfo.chapters;
-  let renderFirstChapters = [];
-  let firstChapter = chapters[0];
-  if(firstChapter)
-  {
-      renderFirstChapters.push(firstChapter);
-  }
-  let renderLatestChapter = [];
-  let lastChapter = chapters[chapters.length -1 ];
-  if(lastChapter)
-  {
-      renderLatestChapter.push(lastChapter);
-  }
-
+  const localUrl = process.env.NEXT_PUBLIC_STRAPI_URL;
 
   return (
     <>
     <Head>
       <meta charSet="utf-8"/>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <title>{props.webComicInfo.Title}</title>
+      <title>Comics</title>
       <script async defer data-domain="kukulkansjourney.info" src="https://plausible.io/js/plausible.js"></script>
+      <script src="/js/mail.js"></script>
     </Head>
-    <div className="back-layout">
-      <section className="hero is-black is-halfheight is-mobile">
-        <div className="hero-head"></div>
-        <div className="hero-body">
-          <div className="container has-text-centered">
-            <p className="title">
-                {props.webComicInfo.Title}
-            </p>
-          </div>
+    <IndexNavbar></IndexNavbar>
+    <section className="hero is-medium is-dark">
+      <div className="hero-body">
+        <div className='container has-text-centered'>
+          <p className="title">
+            Teots Webtoons
+          </p>
+          <p className="subtitle">
+            Webtoons inspirados en México con un toque de  ánime y manga
+          </p>
         </div>
-        <div className="hero-foot"></div>
-      </section>
-      <section className="section webcomic-cover">
-          <div className="columns is-centered is-mobile">
-            <div className="column is-narrow box">
-                <div>
-                    <Link href="/">
-                        <Image
-                        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${props.webComicInfo.Cover.formats.medium.url}`} // Route of the image file
-                        height={250} // Desired size with correct aspect ratio
-                        width={250} // Desired size with correct aspect ratio
-                        alt={props.webComicInfo.Cover.alternativeText}
-                        className="image is-square"
-                        unoptimized={true}
-                        priority={true}
-                        />
-                    </Link>
-                </div>
-            </div>
-          </div>
-      </section>
-      <section className="section">
-        <div className="columns">
-          <div className="column is-8">
+     </div>
+    </section>
+    <section className='section'>
+      <div className="container">
+        <div className={`columns is-mobile`}>
           {
-            renderLatestChapter.map(chapter => (
-              <div className="columns">
-                <div className="column is-6 is-offset-6">
-                    <Link href={`/chapters/${chapter.SEOUrl}`}>
-                      <button className="button is-large is-fullwidth is-rounded is-primary ">Latest Chapter</button>
-                    </Link>
-                </div>
-              </div>
-            ))
+            props.webComicInfo.map((comic,index) => {
+              return (
+                <>
+                  <div key={index} className={`column`}>
+                    <div className="card">
+                      <div className='card-header'>
+                        <p className='card-header-title has-text-centered'>
+                        <Link href={`${comic.NaverWebtoonURL}`}>
+                          <a>
+                          {comic.Title}
+                          </a>
+                        </Link>
+                        </p>
+                      </div>
+                      <div className="card-image">
+                        <Link href={`${comic.NaverWebtoonURL}`}>
+                          <a>
+                            <Image src={`${localUrl}${comic.Cover.formats.large.url}`}
+                                  width={comic.Cover.formats.large.width}
+                                  height={comic.Cover.formats.large.height}
+                                  className="image is-square"
+                                  unoptimized={true}
+                                  / >
+                          </a>
+                        </Link>
+                     </div>
+                      {/*<div className="card-content">
+                        <div className={`content`}>
+                          {comic.Summary}
+                        </div>
+                      </div>*/
+                      }
+                      <footer className="card-footer">
+                        <Link href={`${comic.NaverWebtoonURL}`}>
+                          <a href="#" className="card-footer-item">Leer en webtoon</a>
+                        </Link>
+                        {/*
+                        <Link href={`/webtoons/${comic.WebtoonSEOURL}`}>
+                          <a href="#" className="card-footer-item">All Chapters</a>
+                        </Link>
+                          */}
+                      </footer>
+                    </div>
+                  </div>
+                </>
+              )
+            })
           }
-          {
-            renderFirstChapters.map(chapter => (
-              <div className="columns">
-                <div className="column is-6 is-offset-6">
-                    <Link href={`/chapters/${chapter.SEOUrl}`}>
-                      <button className="button is-large is-fullwidth is-rounded is-success">First Chapter</button>
-                    </Link>
-                </div>
-              </div>
-            ))
-          }
-            <div className="columns">
-              <div className="column is-6 is-offset-6">
-                  <Link href="https://www.webtoons.com/en/challenge/kukulkans-journey/list?title_no=650279">
-                    <button className="button is-large is-fullwidth is-rounded is-link ">Read on Webtoon</button>
-                  </Link>
-               
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column is-6 is-offset-6">
-                  <Link href="https://tapas.io/series/Kukulkans-Journey">
-                    <button className="button is-large is-fullwidth is-rounded is-info">Read on Tapas</button>
-                  </Link>  
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column is-6 is-offset-6">
-                  <Link href="https://www.reddit.com/r/kukulkansjourney/">
-                    <button className="button is-large is-fullwidth is-rounded ">
-                    <span className="icon is-medium">
-                                  <i className="fab fa-reddit-square fa-lg"></i>
-                    </span>
-                    <span>Reddit</span>
-                    </button>
-                  </Link>  
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column is-6 is-offset-6">
-                  <Link href="https://twitter.com/KukulkanJourney">
-                    <button className="button is-large is-fullwidth is-rounded ">
-                        <span className="icon is-medium">
-                            <i className="fab fa-twitter-square fa-lg"></i>        
-                        </span>
-                        <span>Twitter</span>
-                    </button>
-                  </Link>  
-              </div>
-            </div>
-          </div>
         </div>
-      </section>
-<footer className="footer has-background-black">
-  <div className="content has-text-centered has-text-white">
-    <p>
-      <strong className="has-text-white">Kukulkan's Journey</strong> -  All Rights Reserved </p>
-  </div>
-</footer>
-    </div>
+      </div>
+    </section>
+    <footer className={`footer has-background-dark`}>
+      <div className="content has-text-white has-text-centered">
+        <p>
+          <strong className='has-text-white'>Teots Webtoons</strong> -  All Rights Reserved
+        </p>
+      </div>
+    </footer>
     </>
 
   )
