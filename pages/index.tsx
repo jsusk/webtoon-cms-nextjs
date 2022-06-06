@@ -60,8 +60,8 @@ export default function Home(props) {
                       <div className="card-image">
                         <Link href={`/webtoons/${comic.WebtoonSEOURL}`}>
                           <a>
-                            <Image src={`${localUrl}${comic.Cover.formats.large.url}`} 
-                                  width={comic.Cover.formats.large.width} 
+                            <Image src={`${localUrl}${comic.Cover.formats.large.url}`}
+                                  width={comic.Cover.formats.large.width}
                                   height={comic.Cover.formats.large.height}
                                   className="image is-square"
                                   unoptimized={true}
@@ -94,7 +94,7 @@ export default function Home(props) {
     <footer className={`footer has-background-dark`}>
       <div className="content has-text-white has-text-centered">
         <p>
-          <strong className='has-text-white'>Kukulkan's Journey</strong> -  All Rights Reserved 
+          <strong className='has-text-white'>Kukulkan's Journey</strong> -  All Rights Reserved
         </p>
       </div>
     </footer>

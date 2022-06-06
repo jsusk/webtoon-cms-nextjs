@@ -64,9 +64,9 @@ export default function Home(props) {
                       <div className="card-image">
                         <Link href={`${comic.NaverWebtoonURL}`}>
                           <a>
-                            <Image src={`${localUrl}${comic.Cover.formats.large.url}`}
-                                  width={comic.Cover.formats.large.width}
-                                  height={comic.Cover.formats.large.height}
+                            <Image src={`${localUrl}${comic.Cover.formats.small.url}`}
+                                  width={comic.Cover.formats.medium.width}
+                                  height={comic.Cover.formats.medium.height}
                                   className="image is-square"
                                   unoptimized={true}
                                   / >
@@ -81,7 +81,7 @@ export default function Home(props) {
                       }
                       <footer className="card-footer">
                         <Link href={`${comic.NaverWebtoonURL}`}>
-                          <a href="#" className="card-footer-item">Leer en webtoon</a>
+                          <a className="card-footer-item">Leer en webtoon</a>
                         </Link>
                         {/*
                         <Link href={`/webtoons/${comic.WebtoonSEOURL}`}>
