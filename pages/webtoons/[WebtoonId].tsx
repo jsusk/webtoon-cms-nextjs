@@ -86,79 +86,83 @@ export default function Home(props) {
       <section className="section">
         <div className='container'>
           <div className="columns">
-            <div className="column is-8 ">
-              <div className="columns is-multiline is-centered">
-                <div className="column is-full">
-                  <ComicSummary chapters={props.webComicInfo.chapters}>{props.webComicInfo.Summary}</ComicSummary>
-                </div>
-                {
-                props.webComicInfo.chapters.length > 0 ? (
-                <div className="column is-full">
-                      <div className="box chapter-list">
-                        <div className="content">
-                          <h2>Chapters</h2>
-                        </div>
-                        <ComicChapters chapters={props.webComicInfo.chapters}></ComicChapters>
-                      </div>
-                </div>
-                )
-                :
-                (
-                <></>
-                )
-              }
-              </div>
+            <div className='column is-offset-3-widescreen'>
+              <div className="columns">
+                <div className="column is-8">
+                  <div className="columns is-multiline is-centered">
+                    <div className="column is-full">
+                      <ComicSummary chapters={props.webComicInfo.chapters}>{props.webComicInfo.Summary}</ComicSummary>
+                    </div>
+                    {
+                    props.webComicInfo.chapters.length > 0 ? (
+                    <div className="column is-full">
+                          <div className="box chapter-list">
+                            <div className="content">
+                              <h2>Chapters</h2>
+                            </div>
+                            <ComicChapters chapters={props.webComicInfo.chapters}></ComicChapters>
+                          </div>
+                    </div>
+                    )
+                    :
+                    (
+                    <></>
+                    )
+                  }
+                  </div>
 
-            </div>
-            <div className="column is-4">
-              <div className="columns">
-                <div className="column">
-                  <div className="box">
-                    <div className="content">
-                      <h3>Follow us on:</h3>
-                      <p>
-                      <div className="field is-grouped">
-                          <p className="control">
-                            <Link href="https://twitter.com/KukulkanJourney">
-                              <button className="button is-medium">
-                                <span className="icon is-medium">
-                                  <i className="fab fa-twitter-square fa-lg"></i>
-                                  
-                                </span>
-                              </button>
-                            </Link>
-                            
+                </div>
+                <div className="column is-4">
+                  <div className="columns">
+                    <div className="column">
+                      <div className="box">
+                        <div className="content">
+                          <h3>Follow us on:</h3>
+                          <p>
+                          <div className="field is-grouped">
+                              <p className="control">
+                                <Link href="https://twitter.com/KukulkanJourney">
+                                  <button className="button is-medium">
+                                    <span className="icon is-medium">
+                                      <i className="fab fa-twitter-square fa-lg"></i>
+                                      
+                                    </span>
+                                  </button>
+                                </Link>
+                                
+                              </p>
+                              <p className="control">
+                                <Link href="https://www.reddit.com/r/kukulkansjourney/">
+                                    <button className="button is-medium">
+                                      <span className="icon is-medium">
+                                        <i className="fab fa-reddit-square fa-lg"></i>
+                                      </span>
+                                    </button>
+                                  </Link>
+                              </p>                        
+                          </div>
                           </p>
-                          <p className="control">
-                            <Link href="https://www.reddit.com/r/kukulkansjourney/">
-                                <button className="button is-medium">
-                                  <span className="icon is-medium">
-                                    <i className="fab fa-reddit-square fa-lg"></i>
-                                  </span>
-                                </button>
-                              </Link>
-                          </p>                        
+                        </div>
                       </div>
-                      </p>
                     </div>
                   </div>
+                  {
+                  props.flights.mailListEnable ? 
+                  <div className="columns">
+                    <div className="column">
+                      <div className="box">
+                        <div className="ml-form-embed"
+                          data-account="3197461:p9m0x7n0z5"
+                          data-form="4191304:m2w7x4">
+                        </div>
+                      </div>
+                    </div>
+                  </div> 
+                  :
+                  <></> 
+                }
                 </div>
               </div>
-              {
-              props.flights.mailListEnable ? 
-              <div className="columns">
-                <div className="column">
-                  <div className="box">
-                    <div className="ml-form-embed"
-                      data-account="3197461:p9m0x7n0z5"
-                      data-form="4191304:m2w7x4">
-                    </div>
-                  </div>
-                </div>
-              </div> 
-              :
-              <></> 
-            }
             </div>
           </div>
         </div>
