@@ -44,7 +44,7 @@ export default function Home(props) {
      </div>
     </section>
     <section className='section'>
-      <div className="container is-max-desktop">
+      <div className="container">
         <div className={`columns is-flex is-flex-wrap-nowrap ${styles.cardContainer}`}>
           {
             props.webComicInfo.map((comic,index) => {
